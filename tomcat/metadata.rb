@@ -1,13 +1,17 @@
 name 'tomcat'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'Deepak Khandelwal'
+maintainer_email 'deepjagdish@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures tomcat'
 version '0.1.0'
 chef_version '>= 15.0'
 
-depends 'java', '~> 9.0.0'
-cookbook 'java', '~> 9.0.0'
+%w(ubuntu debian centos redhat amazon).each do |os|
+  supports os
+end
+
+
+#depends 'java'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when

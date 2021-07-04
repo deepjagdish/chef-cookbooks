@@ -9,7 +9,10 @@ tomcat_url=node['tomcat']['tomcat_url']
 tomcat_version=node['tomcat']['tomcat_version']
 tomcat_install_dir=node['tomcat']['tomcat_install_dir']
 tomcat_user=node['tomcat']['tomcat_user']
-#tomcat_auto_start=node['tomcat']['tomcat_auto_start']
+tomcat_auto_start=node['tomcat']['tomcat_auto_start']
+
+tomcat_java_version=node['tomcat']['java_install_version']
+
 
 # Create tomcat user 
 
@@ -37,12 +40,28 @@ end
 ## Include the dependencies
 #include_recipe "java_se"
 
-script "Install Java version" do
- 	user "vagrant"
-        code <<-EOH
- 		sudo yum -y install java-1.7.0-openjdk-devel
-	EOH
+#script "Install Java version" do
+# 	user "vagrant"
+#        code <<-EOH
+# 		puts 'yum -y install #{tomcat_java_version}'
+#	EOH
+#end 
+
+if node['platform'] == 'centos'
+	yum_package ['java-1.8.0-openjdk-devel.x86_64', 'wget'] do
+		action :install
+	end
 end
+
+
+if node['platform'] == 'ubuntu'
+        apt_update
+	apt_package ['openjdk-8-jdk', 'wget'] do
+		action :install
+        end
+end
+
+
 
 
 ## Download the tomcat package
