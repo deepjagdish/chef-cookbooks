@@ -1,8 +1,8 @@
-name 'mongodb'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+name 'tomcat'
+maintainer 'Deepak Khandelwal'
+maintainer_email 'deepjagdish@gmail.com'
 license 'All Rights Reserved'
-description 'Installs/Configures mongodb'
+description 'Installs/Configures Mongo DB'
 version '0.1.0'
 chef_version '>= 15.0'
 
