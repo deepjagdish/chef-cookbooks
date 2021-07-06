@@ -30,6 +30,7 @@ platforms:
     run_list:
       - recipe[java-yum]
 
+
 suites:
   - name: default
     run_list:
