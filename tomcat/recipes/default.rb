@@ -10,14 +10,12 @@ tomcat_version=node['tomcat']['tomcat_version']
 tomcat_install_dir=node['tomcat']['tomcat_install_dir']
 tomcat_user=node['tomcat']['tomcat_user']
 tomcat_auto_start=node['tomcat']['tomcat_auto_start']
-
 tomcat_java_version=node['tomcat']['java_install_version']
 
 
 # Create tomcat user 
 
 group "tomcat"
-
 user "tomcat" do
         group "tomcat"
         system true
@@ -53,7 +51,6 @@ if node['platform'] == 'centos'
 	end
 end
 
-
 if node['platform'] == 'ubuntu'
         apt_update
 	apt_package ['openjdk-8-jdk', 'wget'] do
@@ -61,13 +58,10 @@ if node['platform'] == 'ubuntu'
         end
 end
 
-
-
-
-## Download the tomcat package
+# Download the tomcat package
 download_url="#{tomcat_url}"+"v#{tomcat_version}"+"/bin/apache-tomcat-#{tomcat_version}.tar.gz"
 
-script "Download Apache Tomcat version #{tomcat_version}" do
+script "Download Tomcat  #{tomcat_version}" do
         interpreter "bash"
         user "#{tomcat_user}"
         cwd "/tmp"
@@ -77,9 +71,9 @@ script "Download Apache Tomcat version #{tomcat_version}" do
 end
 
 
-## Extract the package
+# Extract the tomcat package in /tmp directory
 
-script "Extracting the Apache Tomcat Package" do
+script "Extracting Tomcat Package" do
         interpreter "bash"
         user "#{tomcat_user}"
         cwd "/tmp"
@@ -89,7 +83,7 @@ script "Extracting the Apache Tomcat Package" do
 end 
 
 
-## Move the unzipped package to /opt/apache/tomcat/apache-tomcat
+# Move the unzipped package to tomcat directory
 
 script "Move the package" do
         interpreter "bash"
@@ -104,7 +98,7 @@ script "Move the package" do
         EOH
 end
 
-## Start the tomcat instance
+# Start the tomcat instance
 
 
 script "Start the tomcat instance" do
