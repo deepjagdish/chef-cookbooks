@@ -18,8 +18,6 @@
 #        end
 #end
 
-
-
 yum_repository 'mongodb-org-4.0' do
   description 'MongoDB Repo'
   baseurl 'https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.4/x86_64/'
