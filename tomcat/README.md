@@ -1,4 +1,4 @@
-# tomcat
+# Tomcat
 
 Tomcat Cookbook
 
